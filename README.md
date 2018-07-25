@@ -47,4 +47,4 @@ For more info, see: https://github.com/react-navigation/react-navigation-tabs
 
 ## Docs
 
-Documentation can be found on the [React Navigation website](https://reactnavigation.org/docs/material-bottom-tab-navigator.html).
+Documentation can be found on the [React Navigation website](https://reactnavigation.org/docs/material-bottom-tab-navigator.html).++
