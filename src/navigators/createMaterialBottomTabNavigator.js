@@ -18,13 +18,16 @@ class BottomNavigationView extends React.Component<Props> {
     return options.tabBarColor;
   };
 
-  _isVisible = ({ route }) => {
-    const { descriptors } = this.props;
-    const descriptor = descriptors[route.key];
-    const options = descriptor.options;
-
-    return options.tabBarVisible;
-  };
+  _isVisible() {
+    const {
+      navigation,
+      descriptors,
+    } = this.props;
+    const {state} = navigation;
+    const route = state.routes[state.index];
+    const options = descriptors[route.key].options;
+    return options.tabBarVisible == null || options.tabBarVisible;
+  }
 
   render() {
     const {
@@ -36,14 +39,13 @@ class BottomNavigationView extends React.Component<Props> {
       barStyle
       ...rest
     } = this.props;
-    if (!this._isVisible()) {
-    	barStyle['display'] = 'none';
-    }
-
+    
+    
+    const extraStyle = this._isVisible() ? {} : { display: 'none' };
     return (
       <BottomNavigation
         {...rest}
-	barStyle={barStyle}
+	      barStyle={[barStyle, extraStyle]}
         navigationState={navigation.state}
         getColor={this._getColor}
         activeTintColor={activeTintColor}
