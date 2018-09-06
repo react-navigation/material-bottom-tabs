@@ -42,6 +42,7 @@ class BottomNavigationView extends React.Component<Props> {
     
     const isVisible = this._isVisible();
     const extraStyle = typeof isVisible === 'boolean' ? { display: isVisible ? null : 'none' } : null;
+
     return (
       <BottomNavigation
         {...rest}
