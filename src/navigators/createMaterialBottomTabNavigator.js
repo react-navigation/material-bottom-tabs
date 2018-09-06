@@ -26,7 +26,7 @@ class BottomNavigationView extends React.Component<Props> {
     const {state} = navigation;
     const route = state.routes[state.index];
     const options = descriptors[route.key].options;
-    return options.tabBarVisible == null || options.tabBarVisible;
+    return options.tabBarVisible;
   }
 
   render() {
@@ -36,11 +36,12 @@ class BottomNavigationView extends React.Component<Props> {
       navigation,
       // eslint-disable-next-line no-unused-vars
       descriptors,
-      barStyle
+      barStyle,
       ...rest
     } = this.props;
     
-    const extraStyle = { display: this._isVisible() ? null : 'none' };
+    const isVisible = this._isVisible();
+    const extraStyle = typeof isVisible === 'boolean' ? { display: isVisible ? null : 'none' } : null;
     return (
       <BottomNavigation
         {...rest}
