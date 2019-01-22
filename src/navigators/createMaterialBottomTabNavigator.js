@@ -27,9 +27,17 @@ class BottomNavigationView extends React.Component<Props> {
   }
 
   _renderIcon = ({ route, focused, color }) => {
-    const { navigation: { state } } = this.props
+    const { 
+      navigation: { state },
+      activeColor,
+      inactiveColor 
+    } = this.props
     const activeRoute = state.routes[state.index].key;
-    return this.props.renderIcon({ route, focused: activeRoute === route.key, tintColor: color });
+    return this.props.renderIcon({ 
+      route, 
+      focused: activeRoute === route.key, 
+      tintColor: activeRoute === route.key ? activeColor : inactiveColor
+    });
   };
 
   render() {
