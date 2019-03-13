@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { BottomNavigation } from 'react-native-paper';
+import { BottomNavigation, withTheme } from 'react-native-paper';
 import { createTabNavigator, type InjectedProps } from 'react-navigation-tabs';
 
 type Props = InjectedProps & {
@@ -38,8 +38,22 @@ class BottomNavigationView extends React.Component<Props> {
       // eslint-disable-next-line no-unused-vars
       descriptors,
       barStyle,
+
+      darkStyles,
+      theme,
+
       ...rest
     } = this.props;
+
+    let _activeTintColor = activeTintColor;
+    let _inactiveTintColor = inactiveTintColor;
+    let _barStyle = barStyle;
+    // dark theme support
+    if (darkStyles && theme.dark) {
+        _activeTintColor = darkStyles.activeTintColor || activeTintColor;
+        _inactiveTintColor = darkStyles.inactiveTintColor || inactiveTintColor;
+        _barStyle = darkStyles.barStyle || barStyle;
+    }
 
     const isVisible = this._isVisible();
     const extraStyle =
@@ -50,11 +64,11 @@ class BottomNavigationView extends React.Component<Props> {
     return (
       <BottomNavigation
         // Pass these for backward compaibility
-        activeColor={activeTintColor}
-        inactiveColor={inactiveTintColor}
+        activeColor={_activeTintColor}
+        inactiveColor={_inactiveTintColor}
         {...rest}
         renderIcon={this._renderIcon}
-        barStyle={[barStyle, extraStyle]}
+        barStyle={[_barStyle, extraStyle]}
         navigationState={navigation.state}
         getColor={this._getColor}
       />
@@ -62,4 +76,4 @@ class BottomNavigationView extends React.Component<Props> {
   }
 }
 
-export default createTabNavigator(BottomNavigationView);
+export default createTabNavigator(withTheme(BottomNavigationView));
