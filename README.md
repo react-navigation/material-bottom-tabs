@@ -1,3 +1,7 @@
+This package has been moved to https://github.com/react-navigation/react-navigation/tree/4.x/packages/material-bottom-tabs
+
+---
+
 # React Navigation Material Bottom Tabs
 
 Bottom Navigation component following [Material design guidelines](https://material.io/design/components/bottom-navigation.html) to use with React Navigation. Uses the Bottom Navigation component from [React Native Paper](https://callstack.github.io/react-native-paper/bottom-navigation.html).
